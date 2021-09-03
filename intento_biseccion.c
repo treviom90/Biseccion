@@ -51,8 +51,8 @@ int main(){
 		}else if(res>0){
 			x1=xr;
 		}else{
-			raiz=xr;
-			printf("\n\tAproximacion a la raiz: %lf",raiz);
+			// raiz=xr;
+			// printf("\n\tAproximacion a la raiz: %lf",raiz);
 			break;
 		}
 		if(iteracion>1){
@@ -79,11 +79,11 @@ int validacion_intervalo(double x1,double xu,double c1,double c2,double c3,doubl
 	int a=0;
 	double fx1,fxr,res;
 	fx1= (c1*(pow(x1,3)))+(c2*(pow(x1,2)))+(c3*x1)+c4;
-	//printf("%lf\n",fx1);
+	// printf("%lf\n",fx1);
 	fxr= (c1*(pow(xu,3)))+(c2*(pow(xu,2)))+(c3*xu)+c4;
-	//printf("%lf\n",fxr);
+	// printf("%lf\n",fxr);
 	res=fx1*fxr;
-	if(res>0){
+	if(res>=0){
 		printf("\n\n\t----NO CONTIENE LA RAIZ -----\n\n");
 		return a;
 	}
