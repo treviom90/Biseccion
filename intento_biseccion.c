@@ -10,7 +10,7 @@ double leer_doble();
 int validacion_intervalo(double x1,double xu,double c1,double c2,double c3,double c4);
 double calcular_xr(double x1,double xu);
 double casos(double x1,double xr,double c1,double c2,double c3,double c4);
-double error_aprox(double iteracion_actual,double iteracion_anterior);
+double error_aprox(double actual, double anterior);
 
 int main(){
 	double error_aproximado=100,validacion,res,raiz;
@@ -94,7 +94,7 @@ int validacion_intervalo(double x1,double xu,double c1,double c2,double c3,doubl
 }
 
 double calcular_xr(double x1,double xu){
-	double respuesta=0;
+	double respuesta;
 	respuesta= (x1+xu)/2;
 	return respuesta;
 }
@@ -108,9 +108,9 @@ double casos(double x1,double xr,double c1,double c2,double c3,double c4){
 	return respuesta;
 }
 
-double error_aprox(double iteracion_actual,double iteracion_anterior){
+double error_aprox(double actual, double anterior){
 	double error_aproximado;
-	error_aproximado= fabs((iteracion_actual-iteracion_anterior)/(iteracion_actual))*100;
+	error_aproximado= fabs((actual - anterior) / (actual)) * 100;
 
 	return error_aproximado;
 }
