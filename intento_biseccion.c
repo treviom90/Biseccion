@@ -3,18 +3,22 @@
 #include <stdlib.h>
 #include <math.h>
 
-double iteracion_anterior=1,iteracion_actual=1;
-int iteracion=0;
+double iteracion_anterior=1;    // valor de la aproximación anterior
+double iteracion_actual=1;  // valor de la aproximación actual
+int iteracion=0;    // veces que se ha repetido el procedimiento
 
-double leer_doble();
-int validacion_intervalo(double x1,double xu,double c1,double c2,double c3,double c4);
+double leer_doble();    // lee un número double de la entrada
+int validacion_intervalo(double x1,double xu,double c1,double c2,double c3,double c4);  // valida x_1, x_u != 0
 double calcular_xr(double x1,double xu);
-double casos(double x1,double xr,double c1,double c2,double c3,double c4);
+double casos(double x1,double xr,double c1,double c2,double c3,double c4);  // devuelve f(x_1) * f(x_r)
 double error_aprox(double actual, double anterior);
 
 int main(){
-	double error_aproximado=100,validacion,res,raiz;
-	double x1,xu,xr,Ea,c1,c2,c3,c4;
+	double error_aproximado=100;    // error en la actual repetición
+    double validacion;  // si el intervalo leído es válido o no
+    double res; // guarda f(x_1) * f(x_r)
+    double raiz;    // valor aproximado de la raíz
+	double x1,xu,xr,Ea,c1,c2,c3,c4; // variables que introduce el usuario
 
 	
 	printf("\t--------------METODO DE BISECCION-------------\n\n");
@@ -46,20 +50,20 @@ int main(){
 		iteracion_anterior=iteracion_actual;
 		iteracion_actual=xr;
 		res= casos(x1,xr,c1,c2,c3,c4);
-		if(res<0){
+		if(res<0){  // si f(x_1) * f(x_r) < 0
 			xu=xr;
-		}else if(res>0){
+		}else if(res>0){    // si f(x_1) * f(x_r) > 0
 			x1=xr;
-		}else{
+		}else{  // si f(x_1) * f(x_r) = 0
 			// raiz=xr;
 			// printf("\n\tAproximacion a la raiz: %lf",raiz);
 			break;
 		}
-		if(iteracion>1){
+		if(iteracion>1){    // en iteración 1, el error aproximado tiene el valor de 100%
 			error_aproximado=error_aprox(iteracion_actual,iteracion_anterior);
 		}
 
-	}while (error_aproximado>Ea);
+	}while (error_aproximado>Ea);   // mientras el error aproximado sea mayor al que quiere el usuario
 	
 	raiz=xr;
 	printf("\n\tAproximacion a la raiz: %lf",raiz);
@@ -76,18 +80,18 @@ double leer_doble() {
 }
 
 int validacion_intervalo(double x1,double xu,double c1,double c2,double c3,double c4){
-	int a=0;
+	int a=0;    // indica si el intervalo es válido
 	double fx1,fxr,res;
-	fx1= (c1*(pow(x1,3)))+(c2*(pow(x1,2)))+(c3*x1)+c4;
+	fx1= (c1*(pow(x1,3)))+(c2*(pow(x1,2)))+(c3*x1)+c4;  // f(x_1)
 	// printf("%lf\n",fx1);
-	fxr= (c1*(pow(xu,3)))+(c2*(pow(xu,2)))+(c3*xu)+c4;
+	fxr= (c1*(pow(xu,3)))+(c2*(pow(xu,2)))+(c3*xu)+c4;  // f(x_r)
 	// printf("%lf\n",fxr);
 	res=fx1*fxr;
-	if(res>=0){
+	if(res>=0){ // si f(x_1) * f(x_r) >= 0
 		printf("\n\n\t----NO CONTIENE LA RAIZ -----\n\n");
 		return a;
 	}
-	else{
+	else{   // si f(x_1) * f(x_r) < 0
 		a=1;
 	}
 	return a;
