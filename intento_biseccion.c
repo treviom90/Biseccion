@@ -13,8 +13,8 @@ double casos(double x1,double xr,double c1,double c2,double c3,double c4);
 double error_aprox(double iteracion_actual,double iteracion_anterior);
 
 int main(){
-	double error_aproximado=100,validacion=0,res=0,raiz=0;
-	double x1=0,xu=0,xr=0,Ea=0,c1=0,c2=0,c3=0,c4=0;
+	double error_aproximado=100,validacion,res,raiz;
+	double x1,xu,xr,Ea,c1,c2,c3,c4;
 
 	
 	printf("\t--------------METODO DE BISECCION-------------\n\n");
@@ -77,7 +77,7 @@ double leer_doble() {
 
 int validacion_intervalo(double x1,double xu,double c1,double c2,double c3,double c4){
 	int a=0;
-	double fx1=0,fxr=0,res=0;
+	double fx1,fxr,res;
 	fx1= (c1*(pow(x1,3)))+(c2*(pow(x1,2)))+(c3*x1)+c4;
 	//printf("%lf\n",fx1);
 	fxr= (c1*(pow(xu,3)))+(c2*(pow(xu,2)))+(c3*xu)+c4;
@@ -100,7 +100,7 @@ double calcular_xr(double x1,double xu){
 }
 
 double casos(double x1,double xr,double c1,double c2,double c3,double c4){
-	double fx1=0,fxr=0,respuesta=0;
+	double fx1,fxr,respuesta;
 	fx1= (c1*(pow(x1,3)))+(c2*(pow(x1,2)))+(c3*x1)+c4;
 	fxr= (c1*(pow(xr,3)))+(c2*(pow(xr,2)))+(c3*xr)+c4;
 	respuesta=fx1*fxr;
@@ -109,7 +109,7 @@ double casos(double x1,double xr,double c1,double c2,double c3,double c4){
 }
 
 double error_aprox(double iteracion_actual,double iteracion_anterior){
-	double error_aproximado=0;
+	double error_aproximado;
 	error_aproximado= fabs((iteracion_actual-iteracion_anterior)/(iteracion_actual))*100;
 
 	return error_aproximado;
